@@ -1,0 +1,45 @@
+﻿@model IEnumerable<RegCodeFirst.Models.City>
+
+@{
+    ViewBag.Title = "IndexCity";
+    <h2>
+        @Html.ActionLink("Country", "IndexCountry", "Country") &nbsp; &nbsp; &nbsp;
+        @Html.ActionLink("States", "IndexState", "State")
+
+    </h2>
+}
+
+
+<h2>IndexCity</h2>
+
+<p>
+    @Html.ActionLink("Add New City", "CreateCity")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.State.StateName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CityName)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.State.StateName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CityName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditCity", new { id = item.CityId }) ||
+                @Html.ActionLink("Delete", "DeleteCity", new { id = item.CityId })
+            </td>
+        </tr>
+    }
+
+</table>

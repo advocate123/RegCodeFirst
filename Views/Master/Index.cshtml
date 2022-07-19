@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<p><h1>ADMIN:</h1></p>
+<p><h4>
+
+    @Html.ActionLink(">Country", "IndexCountry", "Country")
+    <br />
+    @Html.ActionLink(">State", "IndexState", "State")
+    <br />
+    @Html.ActionLink(">City", "IndexCity", "City")
+    </h4>
+    
+    <br /><br />
+    <p><h1>USER:</h1>
+    <h4>
+    @Html.ActionLink(">User Login", "Index", "Registration")
+        </h4>
+</p>
