@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data.SqlClient;
 using RegCodeFirst.Models;
+using RegCodeFirst.ViewModel;
 
 namespace RegCodeFirst.Controllers
 {
@@ -19,8 +20,22 @@ namespace RegCodeFirst.Controllers
         // GET: Registration
         public ActionResult Index()
         {
-            var a = _context.Registrations.ToList();
-            var b = _context.Cities.ToList();
+            //  var a = _context.Registrations.ToList();
+            // var b = _context.Cities.ToList();
+            var a = from e in _context.Registrations
+                            join d in _context.Cities on e.RegCityId equals d.CityId
+                            join f in _context.States on d.CityStateId equals f.StateId
+                            join g in _context.Countries on f.StateCntId equals g.CountryId
+                            select new RegistrationViewModel
+                            {
+                                RegId = e.RegId,
+                                Name = e.Name,
+                                Address = e.Address,
+                                EMail = e.EMail,
+                                City = d.CityName,
+                                State = f.StateName,
+                                Country = g.CountryName
+                            };
 
             return View(a);
         }
